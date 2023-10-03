@@ -1,3 +1,8 @@
+# Additions by Me 
+- Added a way for users to mark an item priority 
+- Changed some of the styling
+- Added some simple instructions for the user
+
 # Introduction
 
 A Simple ToDo App is built using the MVC Architecture, we have also implemented "authorization" so folx can sign up, customize & personalize the app 
@@ -13,6 +18,7 @@ A Simple ToDo App is built using the MVC Architecture, we have also implemented 
 - It's a beginner level app created to understand how MVC concept and logins are added
 
 ---
+
 
 # Who is this for? 
 

@@ -5,7 +5,7 @@ module.exports = {
         console.log(req.user)
         try{
             const todoItems = await Todo.find({userId:req.user.id})
-            const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
+            const itemsLeft = await Todo.countDocuments({userId:req.user.id, completed: false})
             res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
         }catch(err){
             console.log(err)
@@ -13,7 +13,7 @@ module.exports = {
     },
     createTodo: async (req, res)=>{
         try{
-            await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id})
+            await Todo.create({todo: req.body.todoItem, priority:false, completed: false, userId: req.user.id})
             console.log('Todo has been added!')
             res.redirect('/todos')
         }catch(err){
@@ -38,6 +38,28 @@ module.exports = {
             })
             console.log('Marked Incomplete')
             res.json('Marked Incomplete')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    markPriority: async (req, res)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                priority: true
+            })
+            console.log('Marked Priority')
+            res.json('Marked Priority')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    markPriorityIncomplete: async (req, res)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                priority: false
+            })
+            console.log('Marked Not Priority')
+            res.json('Marked Not Priority')
         }catch(err){
             console.log(err)
         }
